@@ -29,7 +29,9 @@ connect_db(app)
 
 # 导入蓝图
 from Controller.project import project
+from Controller.health import health
 app.register_blueprint(project)
+app.register_blueprint(health)
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
