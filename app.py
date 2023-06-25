@@ -30,6 +30,3 @@ connect_db(app)
 # 导入蓝图
 from Controller.project import project
 app.register_blueprint(project)
-
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
