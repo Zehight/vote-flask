@@ -16,6 +16,12 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+# 解决跨域
+
+from flask_cors import CORS, cross_origin
+
+cors = CORS(app)
+
 # 导入环境变量
 from env import Config
 
@@ -30,6 +36,7 @@ connect_db(app)
 # 导入蓝图
 from Controller.project import project
 from Controller.health import health
+
 app.register_blueprint(project)
 app.register_blueprint(health)
 
