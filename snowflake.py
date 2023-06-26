@@ -41,7 +41,7 @@ class Snowflake:
         machine_id = self.machine_id & 31
 
         # 生成并返回一个新ID
-        return ((now << 22) | (datacenter_id << 17) | (machine_id << 12) | self.sequence)
+        return str((now << 22) | (datacenter_id << 17) | (machine_id << 12) | self.sequence)
 
     def wait_for_next_millisecond(self):
         """
