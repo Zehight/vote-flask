@@ -1,26 +1,22 @@
+# 创建一个Flask应用,解决跨域
+from flask import Flask, request
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)
+
 # 加入基本目录
 import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
+
+
 # 导入依赖（snowflake）
 from datetime import datetime
 from snowflake import Snowflake
 
 snowflake = Snowflake(0, 0, 0, datetime(2020, 1, 1))
-# print(snowflake.generate_id())
-
-# 创建一个Flask应用
-from flask import Flask, request
-
-app = Flask(__name__)
-
-# 解决跨域
-
-from flask_cors import CORS
-
-CORS(app)
 
 # 导入环境变量
 from env import Config
