@@ -18,9 +18,9 @@ app = Flask(__name__)
 
 # 解决跨域
 
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
-cors = CORS(app)
+CORS(app)
 
 # 导入环境变量
 from env import Config
