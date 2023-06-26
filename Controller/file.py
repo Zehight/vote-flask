@@ -1,13 +1,14 @@
 import os
 
-from flask import Blueprint, request, send_from_directory
+from flask import Blueprint, request, send_from_directory,current_app
 
 from models import File, db
 
 file = Blueprint('file', __name__, url_prefix='/file')
 from Services import fileServices
 
-img_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), 'img'))
+
+img_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '../img'))
 if not os.path.exists(img_folder):
     os.makedirs(img_folder)
 
@@ -21,8 +22,8 @@ def add():
     return {'id': result}
 
 
-@file.route('/preview/<id>')
+@file.route('/preview/<id>',methods=['GET'])
 def preview(id):
-    name = File.query.filter_by(id=id).first().imgName
+    name = File.query.filter_by(id=id).first().name
     # 通过send_from_directory函数返回图片文件
-    return send_from_directory('./img', name)
+    return send_from_directory(current_app.config['IMG_FOLDER'], name)
