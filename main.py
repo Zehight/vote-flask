@@ -2,14 +2,14 @@
 from flask import Flask, request
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app,supports_credentials=True,resources={r'/*': {'origins': '*'}})
+CORS(app,resources={r'/*': {'origins': '*'}})
 
-@app.route('/', methods=['OPTIONS'])
-def handle_options():
-    response = Flask.make_response(rv='',self=app)
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
+# @app.route('/', methods=['OPTIONS'])
+# def handle_options():
+#     response = Flask.make_response(rv='',self=app)
+#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+#     return response
 
 # 加入基本目录
 import os
