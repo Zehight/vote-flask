@@ -2,7 +2,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app,resources={r"/*": {"origins": "*"}},methods=['GET', 'POST', 'OPTIONS'])
+CORS(app, resources=r'/*',methods=['GET', 'POST', 'OPTIONS'])
 
 # @app.route('/', methods=['OPTIONS'])
 # def handle_options():

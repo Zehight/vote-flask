@@ -8,6 +8,7 @@ project = Blueprint('project', __name__, url_prefix='/project')
 @project.route('/add', methods=['POST'])
 def add():
     requestData = json.loads(request.data)
+    print(requestData)
     print(projectServices.add(**requestData,createBy='test'))
     return jsonify({'data':'ok'})
 
