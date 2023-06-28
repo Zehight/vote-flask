@@ -5,19 +5,26 @@ from datetime import datetime
 snowflake = Snowflake(0, 0, 0, datetime(2023, 1, 1))
 
 # 数据库相关
-from models import db, connect_db, Role
+from models import db, connect_db, Role, RoleFileRelation
 from sqlalchemy import or_
 
 
-def add(name,createBy, zone='', official='', originalName='',):
+def add(name, createBy, zone='', official='', originalName='', frontImg=''):
+    id = snowflake.generate_id()
     item = Role(
-        id=snowflake.generate_id(),
+        id=id,
         name=name,
         originalName=originalName,
         zone=zone,
         official=official,
         createBy=createBy,
     )
+    if frontImg != '':
+        roleFileItem = RoleFileRelation(
+            fileId=frontImg,
+            roleId=id
+        )
+        db.session.add(roleFileItem)
     db.session.add(item)
     db.session.commit()
     return 'successful'
