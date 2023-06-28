@@ -18,6 +18,6 @@ def getList():
     return jsonify({'list': roleServices.getList()})
 
 @role.route('/getInfo', methods=['POST'])
-def getList():
+def getInfo():
     requestData = json.loads(request.data)
     return jsonify({'data': roleServices.getInfo(requestData)})
