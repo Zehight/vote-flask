@@ -65,6 +65,7 @@ class Role(db.Model):
     originalName = db.Column(db.String(255))
     zone = db.Column(db.String(255))
     official = db.Column(db.String(255))
+    parentOfficial = db.Column(db.String(255))
     createTime = db.Column(db.DateTime, default=datetime.utcnow)
     createBy = db.Column(db.String(255), nullable=False)
 

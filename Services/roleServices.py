@@ -9,7 +9,7 @@ from models import db, connect_db, Role, RoleFileRelation
 from sqlalchemy import or_
 
 
-def add(name, createBy, zone='', official='', originalName='', frontImg=''):
+def add(name, createBy, zone='', official='', originalName='', frontImg='',parentOfficial=''):
     id = snowflake.generate_id()
     item = Role(
         id=id,
@@ -18,6 +18,7 @@ def add(name, createBy, zone='', official='', originalName='', frontImg=''):
         zone=zone,
         official=official,
         createBy=createBy,
+        parentOfficial=parentOfficial
     )
     if frontImg != '':
         roleFileItem = RoleFileRelation(
