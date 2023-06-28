@@ -62,9 +62,9 @@ class Group(db.Model):
 class Role(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    area = db.Column(db.String(255), nullable=False)
-    plan = db.Column(db.String(255), nullable=False)
-    remark = db.Column(db.String(255))
+    originalName = db.Column(db.String(255))
+    zone = db.Column(db.String(255))
+    official = db.Column(db.String(255))
     createTime = db.Column(db.DateTime, default=datetime.utcnow)
     createBy = db.Column(db.String(255), nullable=False)
 
@@ -77,9 +77,17 @@ class File(db.Model):
 
 
 class RoleFileRelation(db.Model):
+    roleId = db.Column(db.String(255), primary_key=True)
     fileId = db.Column(db.String(255), primary_key=True)
-    RoleId = db.Column(db.String(255), primary_key=True)
+
+
+class RoleHistaryRelation(db.Model):
+    id = db.Column(db.String(255), primary_key=True)
+    roleId = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+    describe = db.Column(db.String(255))
 
 class GroupRoleRelation(db.Model):
-    groupId = db.Column(db.String(255), primary_key=True)
-    roleId = db.Column(db.String(255), primary_key=True)
+    id = db.Column(db.String(255), primary_key=True)
+    groupId = db.Column(db.String(255))
+    roleId = db.Column(db.String(255))
