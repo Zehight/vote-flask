@@ -61,6 +61,7 @@ class Group(db.Model):
 
 class Role(db.Model):
     id = db.Column(db.String(255), primary_key=True)
+    code = db.Column(db.String(255))
     name = db.Column(db.String(255), nullable=False)
     originalName = db.Column(db.String(255))
     zone = db.Column(db.String(255))
