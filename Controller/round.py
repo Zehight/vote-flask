@@ -15,5 +15,6 @@ def add():
 @round.route('/getList', methods=['POST'])
 def getList():
     requestData = json.loads(request.data)
+    print(requestData)
     return jsonify({'list':roundServices.getList(**requestData)})
 

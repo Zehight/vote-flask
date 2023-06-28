@@ -80,6 +80,8 @@ class File(db.Model):
 class RoleFileRelation(db.Model):
     roleId = db.Column(db.String(255), primary_key=True)
     fileId = db.Column(db.String(255), primary_key=True)
+    createTime = db.Column(db.DateTime, default=datetime.utcnow)
+    createBy = db.Column(db.String(255), nullable=False)
 
 
 class RoleHistaryRelation(db.Model):
