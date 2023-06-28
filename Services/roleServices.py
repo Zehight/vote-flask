@@ -36,3 +36,8 @@ def getList():
     result = db.session.query(Role).all()
     result_dict = [project.to_dict() for project in result]
     return result_dict
+
+def getInfo(roleId):
+    result = db.session.query(Role).get(roleId)
+    result_dict = result.to_dict()
+    return result_dict

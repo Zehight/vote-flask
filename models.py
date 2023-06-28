@@ -14,6 +14,7 @@ def to_dict_decorator(cls):
     def to_dict(self):
         def format_datetime(dt):
             return dt.strftime('%Y-%m-%d')
+
         return {
             prop: format_datetime(getattr(self, prop)) if isinstance(getattr(self, prop), datetime) else getattr(self,
                                                                                                                  prop)
@@ -21,6 +22,7 @@ def to_dict_decorator(cls):
 
     cls.to_dict = to_dict
     return cls
+
 
 @to_dict_decorator
 class Project(db.Model):
@@ -34,6 +36,7 @@ class Project(db.Model):
     createBy = db.Column(db.String(255), nullable=False)
 
 
+@to_dict_decorator
 class Round(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     projectId = db.Column(db.String(255), nullable=False)
@@ -48,7 +51,7 @@ class Round(db.Model):
     createBy = db.Column(db.String(255), nullable=False)
 
 
-
+@to_dict_decorator
 class Group(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     RoundId = db.Column(db.String(255), nullable=False)
@@ -59,6 +62,7 @@ class Group(db.Model):
     createBy = db.Column(db.String(255), nullable=False)
 
 
+@to_dict_decorator
 class Role(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     code = db.Column(db.String(255))
@@ -71,6 +75,7 @@ class Role(db.Model):
     createBy = db.Column(db.String(255), nullable=False)
 
 
+@to_dict_decorator
 class File(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     name = db.Column(db.String(255))
@@ -78,6 +83,7 @@ class File(db.Model):
     createBy = db.Column(db.String(255), nullable=False)
 
 
+@to_dict_decorator
 class RoleFileRelation(db.Model):
     roleId = db.Column(db.String(255), primary_key=True)
     fileId = db.Column(db.String(255), primary_key=True)
@@ -85,12 +91,15 @@ class RoleFileRelation(db.Model):
     createBy = db.Column(db.String(255), nullable=False)
 
 
+@to_dict_decorator
 class RoleHistaryRelation(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     roleId = db.Column(db.String(255))
     title = db.Column(db.String(255))
     describe = db.Column(db.String(255))
 
+
+@to_dict_decorator
 class GroupRoleRelation(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     groupId = db.Column(db.String(255))
