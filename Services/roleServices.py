@@ -9,7 +9,7 @@ from models import db, connect_db, Role, RoleFileRelation
 from sqlalchemy import or_
 
 
-def add(name, createBy,code, zone='', official='', originalName='', frontImg='',parentOfficial=''):
+def add(name, createBy,code='', zone='', official='', originalName='', frontImg='',parentOfficial=''):
     id = snowflake.generate_id()
     item = Role(
         id=id,
