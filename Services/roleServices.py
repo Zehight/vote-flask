@@ -24,7 +24,8 @@ def add(name, createBy,code, zone='', official='', originalName='', frontImg='',
     if frontImg != '':
         roleFileItem = RoleFileRelation(
             fileId=frontImg,
-            roleId=id
+            roleId=id,
+            createBy = 'test'
         )
         db.session.add(roleFileItem)
     db.session.add(item)

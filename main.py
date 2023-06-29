@@ -35,6 +35,7 @@ from Controller.file import file
 from Controller.role import role
 from Controller.round import round
 from Controller.group import group
+from Controller.roleFileRelation import roleFrontImg
 
 app.register_blueprint(project)
 app.register_blueprint(health)
@@ -42,6 +43,7 @@ app.register_blueprint(file)
 app.register_blueprint(role)
 app.register_blueprint(round)
 app.register_blueprint(group)
+app.register_blueprint(roleFrontImg)
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
