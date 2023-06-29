@@ -36,6 +36,8 @@ from Controller.role import role
 from Controller.round import round
 from Controller.group import group
 from Controller.roleFileRelation import roleFrontImg
+from Controller.groupRoleRelation import roleInGroup
+from Controller.roleHistaryRelation import roleHistary
 
 app.register_blueprint(project)
 app.register_blueprint(health)
@@ -44,6 +46,8 @@ app.register_blueprint(role)
 app.register_blueprint(round)
 app.register_blueprint(group)
 app.register_blueprint(roleFrontImg)
+app.register_blueprint(roleInGroup)
+app.register_blueprint(roleHistary)
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))

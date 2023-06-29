@@ -40,7 +40,7 @@ class Project(db.Model):
 class Round(db.Model):
     id = db.Column(db.String(255), primary_key=True)
     projectId = db.Column(db.String(255), nullable=False)
-    name = db.Column(db.DateTime)
+    name = db.Column(db.String(255), nullable=False)
     showTime = db.Column(db.DateTime)
     startVoteTIme = db.Column(db.DateTime)
     endVoteTime = db.Column(db.DateTime)
@@ -54,7 +54,7 @@ class Round(db.Model):
 @to_dict_decorator
 class Group(db.Model):
     id = db.Column(db.String(255), primary_key=True)
-    RoundId = db.Column(db.String(255), nullable=False)
+    roundId = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     voteNum = db.Column(db.Integer(), nullable=False)
     promotedNum = db.Column(db.Integer(), nullable=False)
@@ -97,10 +97,14 @@ class RoleHistaryRelation(db.Model):
     roleId = db.Column(db.String(255))
     title = db.Column(db.String(255))
     describe = db.Column(db.String(255))
+    createTime = db.Column(db.DateTime, default=datetime.utcnow)
+    createBy = db.Column(db.String(255))
 
 
 @to_dict_decorator
 class GroupRoleRelation(db.Model):
-    id = db.Column(db.String(255), primary_key=True)
-    groupId = db.Column(db.String(255))
-    roleId = db.Column(db.String(255))
+    id = db.Column(db.String(255))
+    groupId = db.Column(db.String(255), primary_key=True)
+    roleId = db.Column(db.String(255), primary_key=True)
+    createTime = db.Column(db.DateTime, default=datetime.utcnow)
+    createBy = db.Column(db.String(255))

@@ -22,5 +22,14 @@ def add(roleId, fileId,createBy):
 
 def getList(roleId):
     result = db.session.query(RoleFileRelation).filter_by(roleId=roleId).all()
-    result_dict = [project.to_dict() for project in result]
-    return result_dict
+    if result:
+        result_dict = [project.to_dict() for project in result]
+        return result_dict
+    else:
+        return []
+
+def delInfo(fileId,roleId):
+    result = db.session.query(RoleFileRelation).get((fileId,roleId))
+    db.session.delete(result)
+    db.session.commit()
+    return 'successful'

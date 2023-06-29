@@ -20,4 +20,9 @@ def getList():
 @role.route('/getInfo', methods=['POST'])
 def getInfo():
     requestData = json.loads(request.data)
-    return jsonify({'data': roleServices.getInfo(requestData)})
+    return jsonify({'data': roleServices.getInfo(**requestData)})
+
+@role.route('/delInfo', methods=['POST'])
+def delInfo():
+    requestData = json.loads(request.data)
+    return jsonify({'data': roleServices.delInfo(**requestData)})

@@ -9,7 +9,7 @@ from models import db, connect_db, Role, RoleFileRelation
 from sqlalchemy import or_
 
 
-def add(name, createBy,code='', zone='', official='', originalName='', frontImg='',parentOfficial=''):
+def add(name, createBy, code='', zone='', official='', originalName='', frontImg='', parentOfficial=''):
     id = snowflake.generate_id()
     item = Role(
         id=id,
@@ -25,7 +25,7 @@ def add(name, createBy,code='', zone='', official='', originalName='', frontImg=
         roleFileItem = RoleFileRelation(
             fileId=frontImg,
             roleId=id,
-            createBy = 'test'
+            createBy='test'
         )
         db.session.add(roleFileItem)
     db.session.add(item)
@@ -38,7 +38,24 @@ def getList():
     result_dict = [project.to_dict() for project in result]
     return result_dict
 
-def getInfo(roleId):
-    result = db.session.query(Role).get(roleId)
-    result_dict = result.to_dict()
-    return result_dict
+
+def getInfo(id):
+    result = db.session.query(Role).get(id)
+    if result:
+        result_dict = result.to_dict()
+        frontImgResult = db.session.query(RoleFileRelation.fileId).filter_by(roleId=id).all()
+        if frontImgResult:
+            frontImgs  = [item[0] for item in frontImgResult]
+        else:
+            frontImgs = []
+        result_dict['frontImgs'] = frontImgs
+        return result_dict
+    else:
+        return ''
+
+def delInfo(id):
+    result =  db.session.query(Role).get(id)
+    db.session.delete(result)
+    db.session.commit()
+    return 'successful'
+
