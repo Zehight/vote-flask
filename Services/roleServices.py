@@ -35,8 +35,12 @@ def add(name, createBy, code='', zone='', official='', originalName='', frontImg
 
 def getList():
     result = db.session.query(Role).all()
-    result_dict = [project.to_dict() for project in result]
-    return result_dict
+    roleList = []
+    if result:
+        result_dict = [project.to_dict() for project in result]
+        for item in result_dict:
+            roleList.append(getInfo(item['id']))
+    return roleList
 
 
 def getInfo(id):
