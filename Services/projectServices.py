@@ -46,4 +46,5 @@ def getInfo(id):
 def delInfo(id):
     result = db.session.query(Project).get(id)
     db.session.delete(result)
+    db.session.commit()
     return 'successful'
