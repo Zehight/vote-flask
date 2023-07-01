@@ -28,4 +28,4 @@ def getInfo():
 @group.route('/delInfo', methods=['POST'])
 def delInfo():
     requestData = json.loads(request.data)
-    return jsonify({'data': groupServices.getInfo(**requestData)})
+    return jsonify({'data': groupServices.delInfo(**requestData)})
