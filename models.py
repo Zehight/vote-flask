@@ -42,7 +42,7 @@ class Round(db.Model):
     projectId = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     showTime = db.Column(db.DateTime)
-    startVoteTIme = db.Column(db.DateTime)
+    startVoteTime = db.Column(db.DateTime)
     endVoteTime = db.Column(db.DateTime)
     freezeType = db.Column(db.String(255))
     remark = db.Column(db.String(255))
