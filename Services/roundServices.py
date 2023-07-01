@@ -10,14 +10,14 @@ from .groupServices import getList as GroupGetList
 from sqlalchemy import or_
 
 
-def add(projectId, name, showTime, startVoteTIme, endVoteTime, createBy, remark='', frontImg='', freezeType=0):
+def add(projectId, name, showTime, startVoteTime, endVoteTime, createBy, remark='', frontImg='', freezeType=0):
     id = snowflake.generate_id()
     item = Round(
         id=id,
         name=name,
         projectId=projectId,
         showTime=showTime,
-        startVoteTIme=startVoteTIme,
+        startVoteTime=startVoteTime,
         endVoteTime=endVoteTime,
         frontImg=frontImg,
         remark=remark,
